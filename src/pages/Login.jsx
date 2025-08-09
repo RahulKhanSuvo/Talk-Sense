@@ -3,16 +3,55 @@ import { MdMailOutline } from "react-icons/md";
 import { CiUser } from "react-icons/ci";
 import { CiLock } from "react-icons/ci";
 import { useState } from "react";
+
 function Login() {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    username: "",
+    password: "",
+  });
+
+  const [error, setError] = useState({});
+
+  const handelChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const validate = () => {
+    let newError = {};
+
+    if (!formData.email) {
+      newError.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newError.email = "Email is invalid";
+    }
+
+    if (!formData.username) {
+      newError.username = "Username is required";
+    } else if (formData.username.length < 3) {
+      newError.username = "Username must be at least 3 characters long";
+    }
+
+    if (!formData.password) {
+      newError.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      newError.password = "Password must be at least 6 characters long";
+    }
+
+    setError(newError);
+    return Object.keys(newError).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Username:", username);
-    console.log("Password:", password);
+    if (validate()) {
+      console.log("form submitted", formData);
+      setFormData({ email: "", username: "", password: "" });
+      setError({});
+    }
   };
+
   return (
     <div className="h-screen text-black bg-[#F7F7FF] flex flex-col items-center justify-center">
       <img className="w-32 mb-12 object-cover" src={logo} alt="logo" />
@@ -20,58 +59,89 @@ function Login() {
       <h3 className="mt-2 mb-5 text-sm text-[#7A7F9A]">
         Get your Chatvia account now
       </h3>
-      <div className="bg-white max-w-[456px]  w-full p-10 rounded-md">
+      <div className="bg-white max-w-[456px] w-full p-10 rounded-md">
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           {/* email */}
           <div className="flex flex-col gap-2">
             <label htmlFor="email">Email</label>
-            <div className="flex border rounded-[3px] border-[#E6EBF5] items-center bg-[#F8F9FA]">
+            <div
+              className={
+                `flex border rounded-[3px] border-[#E6EBF5] items-center bg-[#F8F9FA]` +
+                (error.email ? " border-red-500" : "")
+              }
+            >
               <div className="text-lg py-3.5 border-r px-4 border-[#E6EBF5]">
                 <MdMailOutline />
               </div>
               <input
-                className="outline-none w-full px-3 "
+                className="outline-none w-full px-3"
                 type="email"
                 id="email"
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
+                value={formData.email}
+                onChange={handelChange}
                 placeholder="Enter your email"
               />
             </div>
+            {error.email && (
+              <p className="text-red-500 text-sm mt-1">{error.email}</p>
+            )}
           </div>
+
           {/* username */}
           <div className="flex flex-col gap-2">
             <label htmlFor="username">Username</label>
-            <div className="flex border rounded-[3px] border-[#E6EBF5] items-center bg-[#F8F9FA]">
+            <div
+              className={
+                `flex border rounded-[3px] border-[#E6EBF5] items-center bg-[#F8F9FA]` +
+                (error.username ? " border-red-500" : "")
+              }
+            >
               <div className="text-lg py-3.5 border-r px-4 border-[#E6EBF5]">
                 <CiUser />
               </div>
               <input
-                className="outline-none w-full px-3 "
+                className="outline-none w-full px-3"
                 type="text"
                 name="username"
                 id="username"
-                onChange={(e) => setUsername(e.target.value)}
+                value={formData.username}
+                onChange={handelChange}
                 placeholder="Enter your username"
               />
             </div>
+            {error.username && (
+              <p className="text-red-500 text-sm mt-1">{error.username}</p>
+            )}
           </div>
+
           {/* password */}
           <div className="flex flex-col gap-2">
-            <label htmlFor="username">Password</label>
-            <div className="flex border rounded-[3px] border-[#E6EBF5] items-center bg-[#F8F9FA]">
+            <label htmlFor="password">Password</label>
+            <div
+              className={
+                `flex border rounded-[3px] border-[#E6EBF5] items-center bg-[#F8F9FA]` +
+                (error.password ? " border-red-500" : "")
+              }
+            >
               <div className="text-lg py-3.5 border-r px-4 border-[#E6EBF5]">
                 <CiLock />
               </div>
               <input
-                className="outline-none w-full px-3 "
+                className="outline-none w-full px-3"
                 type="password"
                 name="password"
-                onChange={(e) => setPassword(e.target.value)}
                 id="password"
+                value={formData.password}
+                onChange={handelChange}
                 placeholder="Enter your password"
               />
             </div>
+            {error.password && (
+              <p className="text-red-500 text-sm mt-1">{error.password}</p>
+            )}
           </div>
+
           <button className="bg-primary w-full py-2.5 text-white rounded-sm">
             Sign up
           </button>
