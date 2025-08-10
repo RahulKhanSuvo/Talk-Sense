@@ -1,4 +1,4 @@
-import logo from "../assets/logo-dark.png";
+import logo from "../../assets/logo-dark.png";
 import { MdMailOutline } from "react-icons/md";
 import { CiUser } from "react-icons/ci";
 import { CiLock } from "react-icons/ci";
