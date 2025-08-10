@@ -14,23 +14,23 @@ export default function ChatLayout() {
         <nav>
           <ul className="flex flex-col items-center gap-4">
             <li>
-              <NavLink className={"text-[28px]"} to="/profile">
+              <NavLink className={"text-[23px]"} to="/profile">
                 <AiOutlineUser />
               </NavLink>
             </li>
             <li>
-              <NavLink className={"text-[28px]"} to="/chats">
+              <NavLink className={"text-[23px]"} to="/chats">
                 <IoChatboxEllipsesOutline />
               </NavLink>
             </li>
             <li>
-              <NavLink className={"text-[28px]"} to="/contact">
-                <RiContactsBook3Line />
+              <NavLink className={"text-[23px]"} to="/calls">
+                <BiPhoneCall />
               </NavLink>
             </li>
             <li>
-              <NavLink className={"text-[28px]"} to="/calls">
-                <BiPhoneCall />
+              <NavLink className={"text-[23px]"} to="/contact">
+                <RiContactsBook3Line />
               </NavLink>
             </li>
           </ul>
