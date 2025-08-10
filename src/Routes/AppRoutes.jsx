@@ -14,13 +14,13 @@ function AppRoutes() {
     <>
       <Routes>
         {/* Auth Layout Routes */}
-        <Route path="/" element={<AuthLayout />}>
+        <Route path="/auth" element={<AuthLayout />}>
           <Route path="login" element={<Login />} />
         </Route>
         {/* Chat Layout Routes */}
         <Route path="/" element={<ChatLayout />}>
           <Route path="profile" element={<Profile />} />
-          <Route path="chat" element={<Chat />} />
+          <Route path="chats" element={<Chat />} />
           <Route path="contact" element={<Contacts />} />
           <Route path="calls" element={<Calls />} />
           <Route path="settings" element={<Settings />} />
