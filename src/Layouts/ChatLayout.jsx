@@ -40,7 +40,7 @@ export default function ChatLayout() {
         </div>
       </aside>
       {/* main content */}
-      <main className="flex-1 p-4 bg-gray-100">
+      <main className="flex-1 p-4">
         <Outlet />
       </main>
     </div>
