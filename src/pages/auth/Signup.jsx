@@ -8,7 +8,9 @@ import { FcGoogle } from "react-icons/fc";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 function Signup() {
+  const { createNewUser } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -51,6 +53,20 @@ function Signup() {
     e.preventDefault();
     if (validate()) {
       console.log("form submitted", formData);
+      createNewUser(formData.email, formData.password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log("User created:", user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.error("Error creating user:", errorCode, errorMessage);
+          // ..
+        });
+
       setFormData({ email: "", username: "", password: "" });
       setError({});
     }
