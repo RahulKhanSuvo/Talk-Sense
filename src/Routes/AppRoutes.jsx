@@ -7,8 +7,9 @@ import Contacts from "../pages/chat/Contacts";
 import Calls from "../pages/chat/Calls";
 import Settings from "../pages/chat/Settings";
 import AuthLayout from "../Layouts/AuthLayout";
-import Login from "../pages/auth/Login";
+import Signup from "../pages/auth/Signup";
 import { Conversation } from "../pages/chat/Conversation";
+import Login from "../pages/auth/Login";
 
 function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ function AppRoutes() {
         {/* Auth Layout Routes */}
         <Route path="/auth" element={<AuthLayout />}>
           <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
         </Route>
         {/* Chat Layout Routes */}
         <Route path="/" element={<ChatLayout />}>

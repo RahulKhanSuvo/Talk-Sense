@@ -1,3 +1,3 @@
 export const Conversation = () => {
-  return <div>Conversation</div>;
+  return <div className="bg-[#F7F7F7]">Conversation</div>;
 };

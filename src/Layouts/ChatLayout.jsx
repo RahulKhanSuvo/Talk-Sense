@@ -11,7 +11,9 @@ export default function ChatLayout() {
     <div className="flex h-screen text-white">
       {/* sidebar */}
       <aside className="w-24 flex bg-primary flex-col items-center justify-between p-4">
-        <img className="w-20" src={logo} alt="logo" />
+        <div className="border-b-2 border-white pb-4">
+          <img className="w-20" src={logo} alt="logo" />
+        </div>
         <nav>
           <ul className="flex flex-col items-center gap-4">
             <li>
@@ -36,7 +38,7 @@ export default function ChatLayout() {
             </li>
           </ul>
         </nav>
-        <div className="text-[28px] flex flex-col items-center gap-4">
+        <div className="text-[28px] flex flex-col items-center gap-7">
           <MdOutlineNightlight size={28} />
 
           <IoSettingsOutline size={28} />
