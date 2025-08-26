@@ -4,7 +4,10 @@ import { CiUser } from "react-icons/ci";
 import { CiLock } from "react-icons/ci";
 import { useState } from "react";
 import { IoEyeOutline } from "react-icons/io5";
+import { FcGoogle } from "react-icons/fc";
 import { IoEyeOffOutline } from "react-icons/io5";
+import { FaFacebook } from "react-icons/fa";
+import { Link } from "react-router-dom";
 function Signup() {
   const [formData, setFormData] = useState({
     email: "",
@@ -159,6 +162,36 @@ function Signup() {
             Sign up
           </button>
         </form>
+        <div>
+          <p className="text-sm text-center mt-5 text-[#7A7F9A]">
+            Already have an account?{" "}
+            <Link to="/auth/login" className="text-primary font-medium">
+              Login
+            </Link>
+          </p>
+        </div>
+        {/* social login */}
+        <div>
+          <p className="text-sm text-center mt-5 text-[#7A7F9A]">
+            or sign up with
+          </p>
+        </div>
+        <div className="flex items-center justify-center gap-5 mt-4 text-2xl">
+          <button className="text-3xl">
+            <FcGoogle />
+          </button>
+          <button className="text-3xl text-blue-600">
+            <FaFacebook />
+          </button>
+        </div>
+        <div>
+          <p className="text-sm text-center mt-5 text-[#7A7F9A]">
+            By signing up, you agree to our{" "}
+            <a href="#" className="text-primary font-medium">
+              Terms & Conditions
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );

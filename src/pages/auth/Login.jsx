@@ -3,6 +3,9 @@ import { MdMailOutline } from "react-icons/md";
 import { CiLock } from "react-icons/ci";
 import { useState } from "react";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -124,6 +127,27 @@ function Login() {
             Login
           </button>
         </form>
+        <div>
+          <p className="text-sm text-center mt-5 text-[#7A7F9A]">
+            Don't have an account?{" "}
+            <Link to="/auth/signup" className="text-primary font-medium">
+              Sign Up
+            </Link>
+          </p>
+        </div>
+        <div>
+          <p className="text-sm text-center mt-5 text-[#7A7F9A]">
+            or sign up with
+          </p>
+          <div className="flex items-center justify-center gap-5 mt-4 text-2xl">
+            <button className="text-3xl">
+              <FcGoogle />
+            </button>
+            <button className="text-3xl text-blue-600">
+              <FaFacebook />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
