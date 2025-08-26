@@ -6,8 +6,11 @@ import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 function Login() {
+  const data = useAuth();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
