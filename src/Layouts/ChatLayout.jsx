@@ -6,7 +6,10 @@ import { IoChatboxEllipsesOutline, IoSettingsOutline } from "react-icons/io5";
 import { RiContactsBook3Line } from "react-icons/ri";
 import { BiPhoneCall } from "react-icons/bi";
 import { TbLogout2 } from "react-icons/tb";
+import { useAuth } from "../hooks/useAuth";
 export default function ChatLayout() {
+  const { user, handelLogout } = useAuth();
+  console.log(user);
   return (
     <div className="flex h-screen text-white">
       {/* sidebar */}
@@ -42,7 +45,7 @@ export default function ChatLayout() {
           <MdOutlineNightlight size={28} />
 
           <IoSettingsOutline size={28} />
-          <button>
+          <button onClick={handelLogout} className="text-[28px]">
             <TbLogout2 />
           </button>
           {/* profile */}

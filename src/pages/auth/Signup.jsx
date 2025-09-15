@@ -7,10 +7,11 @@ import { IoEyeOutline } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { FaFacebook } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 function Signup() {
-  const { createNewUser } = useAuth();
+  const { createNewUser, signInWithGoogle } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -18,6 +19,7 @@ function Signup() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState({});
+  const navigate = useNavigate();
 
   const handelChange = (e) => {
     const { name, value } = e.target;
@@ -58,20 +60,33 @@ function Signup() {
           // Signed in
           const user = userCredential.user;
           console.log("User created:", user);
-          // ...
+          toast.success("User created successfully!");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.error("Error creating user:", errorCode, errorMessage);
-          // ..
+          toast.error(errorMessage);
         });
 
       setFormData({ email: "", username: "", password: "" });
       setError({});
     }
   };
-
+  // google sign in
+  const handelGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("Google sign-in successful!");
+        navigate("/", { replace: true });
+      })
+      .catch((error) => {
+        console.error("Error with Google sign-in:", error);
+        toast.error(error.message);
+      });
+  };
   return (
     <div className="h-screen text-black bg-[#F7F7FF] flex flex-col items-center justify-center">
       <img className="w-32 mb-6 object-cover" src={logo} alt="logo" />
@@ -193,7 +208,7 @@ function Signup() {
           </p>
         </div>
         <div className="flex items-center justify-center gap-5 mt-4 text-2xl">
-          <button className="text-3xl">
+          <button onClick={handelGoogleSignIn} className="text-3xl">
             <FcGoogle />
           </button>
           <button className="text-3xl text-blue-600">

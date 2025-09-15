@@ -24,8 +24,9 @@ const AuthProvider = ({ children }) => {
   const signInWithGoogle = () => {
     return signInWithPopup(auth, googleProvider);
   };
-  const handelLogout = () => {
-    return signOut(auth);
+  const handelLogout = async () => {
+    await signOut(auth);
+    setUser(null);
   };
   const authInfo = {
     user,
@@ -41,9 +42,12 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("Auth state changed:", currentUser);
       if (currentUser) {
+        console.log(currentUser);
         setUser(currentUser);
+      } else {
+        setUser(null);
       }
-      setUser(null);
+      setLoading(false);
     });
     return () => unsubscribe();
   }, []);

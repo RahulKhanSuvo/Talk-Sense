@@ -10,7 +10,8 @@ import AuthLayout from "../Layouts/AuthLayout";
 import Signup from "../pages/auth/Signup";
 import { Conversation } from "../pages/chat/Conversation";
 import Login from "../pages/auth/Login";
-
+import { Toaster } from "react-hot-toast";
+import { PrivateRoute } from "./PrivateRoute";
 function AppRoutes() {
   return (
     <>
@@ -21,8 +22,15 @@ function AppRoutes() {
           <Route index element={<Login />} />
           <Route path="signup" element={<Signup />} />
         </Route>
-        {/* Chat Layout Routes */}
-        <Route path="/" element={<ChatLayout />}>
+        {/* Protected Chat Routes */}
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <ChatLayout />
+            </PrivateRoute>
+          }
+        >
           <Route path="profile" element={<Profile />} />
           <Route index element={<Chat />} />
           <Route path="chats" element={<Chat />}>
@@ -37,6 +45,7 @@ function AppRoutes() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Toaster position="top-center" />
     </>
   );
 }
