@@ -14,33 +14,29 @@ export default function ChatLayout() {
     <div className="flex h-screen text-white">
       {/* sidebar */}
       <aside className="w-24 flex bg-primary flex-col items-center justify-between p-4">
-        <div className="border-b-2 border-white pb-4">
-          <img className="w-20" src={logo} alt="logo" />
+        <div className=" pb-4 space-y-1.5">
+          {/* <img className="w-20" src={logo} alt="logo" /> */}
+          <nav>
+            <ul className="flex flex-col items-center gap-4">
+              <li>
+                <NavLink className={"text-[28px]"} to="/chats">
+                  <IoChatboxEllipsesOutline />
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className={"text-[28px]"} to="/calls">
+                  <BiPhoneCall />
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className={"text-[28px]"} to="/contact">
+                  <RiContactsBook3Line />
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
         </div>
-        <nav>
-          <ul className="flex flex-col items-center gap-4">
-            <li>
-              <NavLink className={"text-[28px]"} to="/profile">
-                <AiOutlineUser />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className={"text-[28px]"} to="/chats">
-                <IoChatboxEllipsesOutline />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className={"text-[28px]"} to="/calls">
-                <BiPhoneCall />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className={"text-[28px]"} to="/contact">
-                <RiContactsBook3Line />
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
+
         <div className="text-[28px] flex flex-col items-center gap-7">
           <MdOutlineNightlight size={28} />
 
@@ -49,6 +45,19 @@ export default function ChatLayout() {
             <TbLogout2 />
           </button>
           {/* profile */}
+          <div className="relative">
+            {/* small menu */}
+            <div className="absolute w-32 h-32"></div>
+            {user?.photoURL && (
+              <button>
+                <img
+                  src={user.photoURL}
+                  alt={user.displayName || "Profile"}
+                  className="size-10 rounded-full mt-2"
+                />
+              </button>
+            )}
+          </div>
         </div>
       </aside>
       {/* main content */}
