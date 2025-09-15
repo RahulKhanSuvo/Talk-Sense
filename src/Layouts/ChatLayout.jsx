@@ -12,6 +12,7 @@ export default function ChatLayout() {
   const { user, handelLogout } = useAuth();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const menuRef = useRef(null);
+  console.log(menuRef.current);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
