@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { MdOutlineNightlight } from "react-icons/md";
-import { IoChatboxEllipsesOutline, IoSettingsOutline } from "react-icons/io5";
+import { IoChatboxEllipsesOutline } from "react-icons/io5";
 import { RiContactsBook3Line } from "react-icons/ri";
 import { BiPhoneCall } from "react-icons/bi";
 import { TbLogout2 } from "react-icons/tb";
